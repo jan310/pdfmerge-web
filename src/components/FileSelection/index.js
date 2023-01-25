@@ -29,7 +29,8 @@ function FileSelection({files, setFiles}) {
         id: responseJson.id,
         name: file.name,
         size: responseJson.size,
-        numberOfPages: responseJson.numberOfPages
+        numberOfPages: responseJson.numberOfPages,
+        selectedPages: []
       };
       setFiles(prevState => [...prevState, fileMetaData]);
     }).catch((error) => console.log(error));
