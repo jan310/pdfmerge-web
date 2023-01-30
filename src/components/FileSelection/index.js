@@ -1,7 +1,8 @@
 import "./index.css";
-import {FaFilePdf} from "react-icons/fa";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFilePdf, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 
-function FileSelection({files, setFiles}) {
+function FileSelection({files, setFiles, setCurrentStep}) {
 
   function handleDrop(e) {
     e.preventDefault();
@@ -12,6 +13,12 @@ function FileSelection({files, setFiles}) {
 
   function handleDragOver(e) {
     e.preventDefault();
+  }
+
+  function removeFile(e, id) {
+    e.preventDefault();
+    setFiles(files.filter((file) => file.id !== id));
+    //TODO: notify backend
   }
 
   function upload(file) {
@@ -38,17 +45,23 @@ function FileSelection({files, setFiles}) {
 
   return (
     <>
+      <h3>Schritt 1: Laden Sie die PDF-Dateien hoch, aus denen eine neue Datei erstellt werden soll</h3>
       <input id={"selectFiles"} type={"file"} multiple accept={"application/pdf"} style={{display: "none"}} onChange={(e) => Array.from(e.target.files).forEach(file => upload(file))}/>
-      <button className={"select-file-button"} onClick={() => document.getElementById("selectFiles").click()}>PDF-Dateien auswählen</button>
+      <button onClick={() => document.getElementById("selectFiles").click()}>PDF-Dateien auswählen</button>
       <div onDrop={handleDrop} onDragOver={handleDragOver} className={"drag-drop-field"}>
         {files.length === 0 ?
           <p style={{color: "gray"}}>Hier PDF-Dateien per Drag and Drop einfügen</p> :
           files.map((file, index) =>
             <div key={index} className={"file"}>
-              <FaFilePdf size={50}/>
-              <p className={"file-name"}>{file.name}</p>
+              <FontAwesomeIcon icon={faFilePdf} size={"3x"} onContextMenu={(e) => removeFile(e, file.id)}/>
+              <p className={"file-name"} onContextMenu={(e) => removeFile(e, file.id)}>{file.name}</p>
             </div>
         )}
+      </div>
+      <div style={files.length > 0 ? {display: "block"} : {display: "none"}}>
+        <FontAwesomeIcon icon={faCircleInfo} size={"lg"} style={{display: "inline-block", marginRight: "5px"}}/>
+        <p style={{display: "inline-block", fontFamily: "Calibri, serif", marginTop: "8px"}}>Klicken Sie mit der rechten Maustaste auf eine Datei, wenn Sie diese wieder entfernen möchten.</p>
+        <button style={{width: "100%", fontWeight: "bold", marginTop: "50px"}} onClick={() => setCurrentStep("MergeSpecification")}>Weiter zu Schritt 2</button>
       </div>
     </>
   );

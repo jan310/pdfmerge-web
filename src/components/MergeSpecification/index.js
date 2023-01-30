@@ -13,26 +13,29 @@ function MergeSpecification({files, setFiles}) {
   }
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId={"files"}>
-        {(provided) => (
-          <ul {...provided.droppableProps} ref={provided.innerRef}>
-            {files.map((file, index) => {
-              return (
-                <Draggable key={file.id} draggableId={file.id} index={index}>
-                  {(provided) => (
-                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                      <FileSpecification file={file}/>
-                    </li>
-                  )}
-                </Draggable>
-              )
-            })}
-            {provided.placeholder}
-          </ul>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <h3>Schritt 2: Ziehen Sie Ihre Dateien per Drag and Drop in die gewünschte Reihenfolge</h3>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId={"files"}>
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {files.map((file, index) => {
+                return (
+                  <Draggable key={file.id} draggableId={file.id} index={index}>
+                    {(provided) => (
+                      <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                        <FileSpecification file={file}/>
+                      </li>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   )
 
 }

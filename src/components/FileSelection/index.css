@@ -1,4 +1,9 @@
-.select-file-button {
+h3 {
+    font-family: Calibri, serif;
+    text-align: center;
+}
+
+button {
     display: block;
     margin: 0 auto;
     background-color: white;
@@ -21,8 +26,7 @@
 
 .file {
     width: 150px;
-    text-align: center;
-    margin-right: 5px
+    text-align: center
 }
 
 .file-name {
