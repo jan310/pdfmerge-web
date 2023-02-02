@@ -18,7 +18,6 @@ function FileSelection({files, setFiles, setCurrentStep}) {
   function removeFile(e, id) {
     e.preventDefault();
     setFiles(files.filter((file) => file.id !== id));
-    //TODO: notify backend
   }
 
   function upload(file) {
@@ -37,7 +36,7 @@ function FileSelection({files, setFiles, setCurrentStep}) {
         name: file.name,
         size: responseJson.size,
         numberOfPages: responseJson.numberOfPages,
-        selectedPages: []
+        selectedPages: "all"
       };
       setFiles(prevState => [...prevState, fileMetaData]);
     }).catch((error) => console.log(error));
@@ -60,7 +59,7 @@ function FileSelection({files, setFiles, setCurrentStep}) {
       </div>
       <div style={files.length > 0 ? {display: "block"} : {display: "none"}}>
         <FontAwesomeIcon icon={faCircleInfo} size={"lg"} style={{display: "inline-block", marginRight: "5px"}}/>
-        <p style={{display: "inline-block", fontFamily: "Calibri, serif", marginTop: "8px"}}>Klicken Sie mit der rechten Maustaste auf eine Datei, wenn Sie diese wieder entfernen möchten.</p>
+        <p style={{display: "inline-block", fontFamily: "Calibri, serif", marginTop: "8px"}}>Klicken Sie mit der rechten Maustaste auf eine Datei, falls Sie diese wieder entfernen möchten.</p>
         <button style={{width: "100%", fontWeight: "bold", marginTop: "50px"}} onClick={() => setCurrentStep("MergeSpecification")}>Weiter zu Schritt 2</button>
       </div>
     </>

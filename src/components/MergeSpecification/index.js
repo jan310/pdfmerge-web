@@ -2,7 +2,7 @@ import "./index.css";
 import FileSpecification from "../FileSpecification";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 
-function MergeSpecification({files, setFiles}) {
+function MergeSpecification({files, setFiles, setCurrentStep}) {
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -24,17 +24,21 @@ function MergeSpecification({files, setFiles}) {
                   <Draggable key={file.id} draggableId={file.id} index={index}>
                     {(provided) => (
                       <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                        <FileSpecification file={file}/>
+                        <FileSpecification file={file} setFiles={setFiles} index={index}/>
                       </li>
                     )}
                   </Draggable>
                 )
               })}
-              {provided.placeholder}
+              <div style={{marginBottom: "10px"}}>{provided.placeholder}</div>
             </ul>
           )}
         </Droppable>
       </DragDropContext>
+      <div style={{marginTop: "50px", display: "flex", justifyContent: "space-between"}}>
+        <button style={{marginLeft: "0", width: "350px", fontWeight: "bold"}} onClick={() => setCurrentStep("FileSelection")}>Zurück zu Schritt 1</button>
+        <button style={{marginRight: "0", width: "350px", fontWeight: "bold"}} onClick={() => {if (files.every(file => file.selectedPages !== "error")) setCurrentStep("FilePreview")}}>PDF-Dateien zusammenführen</button>
+      </div>
     </>
   )
 
