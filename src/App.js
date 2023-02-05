@@ -1,10 +1,11 @@
 import {useState} from "react";
 import FileSelection from "./components/FileSelection";
 import MergeSpecification from "./components/MergeSpecification";
+import FilePreview from "./components/FilePreview";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState("MergeSpecification");
-  const [files, setFiles] = useState([
+  const [currentStep, setCurrentStep] = useState("FileSelection");
+  const [files, setFiles] = useState([/*
     {
       id: "1",
       name: "file1.pdf",
@@ -25,12 +26,13 @@ function App() {
       size: 70000,
       numberOfPages: 7,
       selectedPages: "all"
-    },
+    },*/
   ]);
 
   function displayCurrentStep() {
     if (currentStep === "FileSelection") return <FileSelection files={files} setFiles={setFiles} setCurrentStep={setCurrentStep}/>;
     else if (currentStep === "MergeSpecification") return <MergeSpecification files={files} setFiles={setFiles} setCurrentStep={setCurrentStep}/>;
+    else return <FilePreview files={files} setFiles={setFiles} setCurrentStep={setCurrentStep}/>
   }
 
   return (

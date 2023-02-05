@@ -37,7 +37,7 @@ function MergeSpecification({files, setFiles, setCurrentStep}) {
       </DragDropContext>
       <div style={{marginTop: "50px", display: "flex", justifyContent: "space-between"}}>
         <button style={{marginLeft: "0", width: "350px", fontWeight: "bold"}} onClick={() => setCurrentStep("FileSelection")}>Zurück zu Schritt 1</button>
-        <button style={{marginRight: "0", width: "350px", fontWeight: "bold"}} onClick={() => {if (files.every(file => file.selectedPages !== "error")) setCurrentStep("FilePreview")}}>PDF-Dateien zusammenführen</button>
+        <button style={{marginRight: "0", width: "350px", fontWeight: "bold"}} onClick={() => {if (files.length > 0 && files.every(file => file.selectedPages !== "error")) setCurrentStep("FilePreview")}}>PDF-Dateien zusammenführen</button>
       </div>
     </>
   )
