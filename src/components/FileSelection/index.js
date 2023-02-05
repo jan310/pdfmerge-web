@@ -36,7 +36,9 @@ function FileSelection({files, setFiles, setCurrentStep}) {
         name: file.name,
         size: responseJson.size,
         numberOfPages: responseJson.numberOfPages,
-        selectedPages: "all"
+        selectedPages: [],
+        allPagesSelectedCheckBox: true,
+        pageSelectionTextBox: ""
       };
       setFiles(prevState => [...prevState, fileMetaData]);
     }).catch((error) => console.log(error));

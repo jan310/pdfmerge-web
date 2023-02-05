@@ -4,30 +4,9 @@ import MergeSpecification from "./components/MergeSpecification";
 import FilePreview from "./components/FilePreview";
 
 function App() {
+
   const [currentStep, setCurrentStep] = useState("FileSelection");
-  const [files, setFiles] = useState([/*
-    {
-      id: "1",
-      name: "file1.pdf",
-      size: 50000,
-      numberOfPages: 5,
-      selectedPages: "all"
-    },
-    {
-      id: "2",
-      name: "file2.pdf",
-      size: 60000,
-      numberOfPages: 6,
-      selectedPages: "all"
-    },
-    {
-      id: "3",
-      name: "file3.pdf",
-      size: 70000,
-      numberOfPages: 7,
-      selectedPages: "all"
-    },*/
-  ]);
+  const [files, setFiles] = useState([]);
 
   function displayCurrentStep() {
     if (currentStep === "FileSelection") return <FileSelection files={files} setFiles={setFiles} setCurrentStep={setCurrentStep}/>;
@@ -41,6 +20,7 @@ function App() {
       {displayCurrentStep()}
     </div>
   );
+
 }
 
 export default App;

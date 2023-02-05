@@ -17,7 +17,7 @@ function FilePreview({files, setFiles, setCurrentStep}) {
   }
 
   useEffect(() => {
-    if (files.every(file => file.selectedPages === "all")) {
+    if (files.every(file => file.allPagesSelectedCheckBox === true)) {
       const ids = [];
       files.forEach(file => ids.push(file.id));
       const requestBody = JSON.stringify({ids: ids});
@@ -30,7 +30,7 @@ function FilePreview({files, setFiles, setCurrentStep}) {
           fileId: file.id,
           pageNumbers: []
         };
-        if (file.selectedPages === "all") for (let i = 1; i <= file.numberOfPages; i++) fileSpecification.pageNumbers.push(i);
+        if (file.allPagesSelectedCheckBox === true) for (let i = 1; i <= file.numberOfPages; i++) fileSpecification.pageNumbers.push(i);
         else fileSpecification.pageNumbers = file.selectedPages;
         fileSpecifications.push(fileSpecification);
       });
@@ -56,7 +56,7 @@ function FilePreview({files, setFiles, setCurrentStep}) {
           setCurrentStep("FileSelection");
         }}>Neues Dokument erstellen</button>
       </div>
-      {mergedFile === null ? <></> : <iframe title={"merged.pdf"} src={URL.createObjectURL(mergedFile)} style={{width: "1000px", height: "500px", marginTop: "20px"}}/>}
+      {mergedFile === null ? <></> : <iframe title={"merged.pdf"} src={URL.createObjectURL(mergedFile)} style={{width: "100%", height: "500px", marginTop: "20px"}}/>}
     </>
   );
 
