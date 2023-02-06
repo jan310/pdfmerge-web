@@ -1,4 +1,4 @@
-h3 {
+h3, p {
     font-family: Calibri, serif;
     text-align: center;
 }
@@ -7,4 +7,12 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.info {
+    margin: 0;
+}
+
+.info-text {
+    margin: 30px auto 0 auto;
 }

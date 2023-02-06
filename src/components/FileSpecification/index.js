@@ -111,7 +111,7 @@ function FileSpecification({file, setFiles, index}) {
         }}/>
         <div className={"tooltip"}>
           <input id={file.id} type={"text"} style={{margin: "5px 5px 5px 0"}} defaultValue={file.pageSelectionTextBox} onBlur={checkInput} disabled={file.allPagesSelectedCheckBox}/>
-          <span className={"tooltiptext"} style={{visibility: !file.allPagesSelectedCheckBox && file.selectedPages === "format-error" ? "visible" : "hidden"}}>Ungültige Eingabe</span>
+          <span className={"tooltiptext"} style={{visibility: !file.allPagesSelectedCheckBox && file.selectedPages === "format-error" ? "visible" : "hidden"}}>Ungültige Eingabe (siehe Info)</span>
           <span className={"tooltiptext"} style={{visibility: !file.allPagesSelectedCheckBox && file.selectedPages === "zero-error" ? "visible" : "hidden"}}>Ungültige Seite (0)</span>
           <span className={"tooltiptext"} style={{visibility: !file.allPagesSelectedCheckBox && file.selectedPages === "max-error" ? "visible" : "hidden"}}>Dokument hat nur {file.numberOfPages} Seiten</span>
         </div>
